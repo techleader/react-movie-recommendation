@@ -7,7 +7,7 @@ import {Button}from 'reactstrap';
 const Settings = () => {
     return (
         <div>          
-       Settings 
+          Settings 
         </div>
     );
 

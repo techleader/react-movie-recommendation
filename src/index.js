@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 import { combineReducers } from 'redux';
-import newsreducer from './reducer/newsreducer';
+import genreReducer from './reducer/GenreReducer';
 
 
 
@@ -28,7 +28,7 @@ export const loadState = () => {
   }; 
 
 const persistedState = loadState();
-const store = createStore(newsreducer, persistedState);
+const store = createStore(genreReducer, persistedState);
 
 store.subscribe(() =>{
     console.log("store updated", store.getState());

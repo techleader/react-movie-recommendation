@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { recommend } from "../actions/action.js"
 import { Card, CardImg, CardSubtitle, CardTitle, CardText, CardBody, Row, Col, Button } from 'reactstrap';
 
 class Movie extends Component {
@@ -8,6 +10,8 @@ class Movie extends Component {
   //   this.state = {
   //   };
   // }
+  
+
 
   render() {
     return (
@@ -19,6 +23,8 @@ class Movie extends Component {
             src={this.props.data.image.url} alt="Card image cap" />
           <CardBody>
             <CardText>{this.props.data.titleType} </CardText>
+            <Button name="Like" onClick={() => this.props.recommend(this.props.data.genre,true)}>Like</Button>
+            <Button name="Dislike" onClick={() => this.props.recommend(this.props.data.genre,false)}>Dislike</Button>
           </CardBody>
         </Card>
 
@@ -27,4 +33,4 @@ class Movie extends Component {
   }
 }
 
-export default Movie;
+export default connect(null, { recommend })(Movie);
