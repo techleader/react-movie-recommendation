@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
-import NewsSource from "./components/NewsSource"
 import { combineReducers } from 'redux';
 import newsreducer from './reducer/newsreducer';
 

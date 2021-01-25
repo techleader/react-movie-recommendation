@@ -7,27 +7,9 @@ import { Navbar,Nav,NavItem,NavbarBrand, Button, Row,Col } from 'reactstrap';
 class Navigation extends  Component{
 
     render(){
-    const {generalVal, businessVal,sportsVal,entertainmentVal} = this.props;   
-        
-    
+    const {} = this.props;   
 
-    let homeButton = "";
-    let businessButton = "";
-    let sportsButton = "";
-    let entertainmentButton = "";
 
-    if(generalVal == "true"){
-        homeButton =  <NavLink to="/general"><Button color="info"> General </Button> </NavLink>
-    }
-    if(businessVal == "true"){
-        businessButton =  <NavLink to="/business"><Button color="info"> Business </Button> </NavLink>
-    }
-    if(sportsVal == "true"){
-        sportsButton =  <NavLink to="/sports"><Button color="info"> Sports </Button> </NavLink>
-    }
-    if(entertainmentVal == "true"){
-        entertainmentButton =  <NavLink to="/entertainment"><Button color="info"> Entertainment </Button> </NavLink>
-    }
 
     return (
         <div>
@@ -35,14 +17,10 @@ class Navigation extends  Component{
              <Col sm="1"></Col>
              <Col sm="10">
                <Navbar  color="dark">
-                    <NavbarBrand ><h4 className="text-danger   ">News Feeds</h4></NavbarBrand>
+                    <NavbarBrand ><h4 className="text-danger   ">Prime Video </h4></NavbarBrand>
                         <Nav >
                             <NavItem>
                                 <NavLink to="/"><Button color="info">Home</Button> </NavLink>            
-                                {homeButton} 
-                                {businessButton} 
-                                {sportsButton} 
-                                {entertainmentButton}  
                                 <NavLink to="/Settings"><Button color="info"> Settings</Button> </NavLink>
                             </NavItem>
                     </Nav>
