@@ -22,7 +22,7 @@ class Movies extends Component {
           {
             actionMovieData.map(movie => {
               return (   
-                <Col md={4}>
+                <Col md={3}>
                   <Movie data={movie} ></Movie>
                 </Col>
               );
