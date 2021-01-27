@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Row, Col,Alert } from 'reactstrap';
+import { Row, Col, Alert } from 'reactstrap';
 import Select from 'react-select';
 import axios from 'axios';
 import Movies from "./Movies";
@@ -124,24 +124,26 @@ class Home extends Component {
 
             <br></br>
             <Row>
-               <Col sm={2} md={3} lg={2} >
+               <Col sm={2}>
                </Col>
                <Col sm={8}  >
-                  <Alert color="primary">
+                  <div className="background">
                      <RecommendedMovies></RecommendedMovies>
-                  </Alert>
+                  </div>
                </Col>
-               <Col sm={2} md={2} lg={2} >
+               <Col sm={2}  >
                </Col>
             </Row>
+            <br></br>
             <Row>
-               <Col sm={2} md={2} lg={2} >
+               <Col sm={2} >
                </Col>
-               <Col sm={8}  >
-                  <Movies></Movies>
-
+               <Col sm={8} >
+                  <div className="moviebg">
+                     <Movies></Movies>
+                  </div>
                </Col>
-               <Col sm={2} md={2} lg={2} >
+               <Col sm={2} >
                </Col>
             </Row>
 

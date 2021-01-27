@@ -7,6 +7,18 @@
   height: 40vmin;
 }
 
+
+.background {
+   border-radius: 8px;
+   background-color:hsla(175, 100%, 37%, 0.274);;
+   padding: 20px 10px 10px 10px;
+ }
+
+ .moviebg {
+   border-radius: 8px;
+   background-color:hsla(313, 98%, 47%, 0.555);;
+   padding: 20px 10px 10px 10px;
+ }
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -30,6 +42,8 @@
     transform: rotate(360deg);
   }
 }
+
+
 
 /* The container */
 .container {

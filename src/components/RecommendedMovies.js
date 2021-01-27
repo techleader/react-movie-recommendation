@@ -17,28 +17,28 @@ class RecommendedMovies extends Component {
     const { comedy, action, adventure } = this.props;
     console.log(comedy);
     return (
-      <div>
-        Recommended Movies
+      <div style={{ color:"white"}}>
+       <b> Recommended Movies</b>
         <Row>
           {
             movies.map(movie => {
               if (movie.genre == "comedy" && comedy == true) {
                 return (
-                  <Col md={4}>
+                  <Col md={3}>
                     <Movie data={movie} ></Movie>
                   </Col>
                 );
 
               } else if (movie.genre == "action" && action == true) {
                 return (
-                  <Col md={4}>
+                  <Col md={3}>
                     <Movie data={movie} ></Movie>
                   </Col>
                 );
 
               } else if (movie.genre == "adventure" && adventure == true) {
                 return (
-                  <Col md={4}>
+                  <Col md={3}>
                     <Movie data={movie} ></Movie>
                   </Col>
                 );

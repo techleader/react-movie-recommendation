@@ -17,10 +17,10 @@ class Movies extends Component {
   render() {
 
     return (
-      <div>
-        <Row>
-          Movies
-        </Row>
+      <div style={{ color:"white"}}>
+       
+       <b>Movies</b>
+      
         <Row>
           {
             actionMovieData.map(movie => {
