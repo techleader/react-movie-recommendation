@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Row, Col,Alert } from 'reactstrap';
+import { Row, Col, Alert } from 'reactstrap';
 import Select from 'react-select';
 import axios from 'axios';
 import Movies from "./Movies";
@@ -16,8 +16,8 @@ let getMovie = 'https://imdb8.p.rapidapi.com/title/get-base';
 
 
 class Home extends Component {
-   constructor( props ) {
-      super( props );
+   constructor(props) {
+      super(props);
       this.state = {
          genre: [],
          moviesIdByGenre: [],
@@ -38,30 +38,30 @@ class Home extends Component {
          }
       };
 
-      axios( options )
-         .then( response => {
+      axios(options)
+         .then(response => {
             let list = [];
-            response.data.genres.map( genre => {
+            response.data.genres.map(genre => {
                let data = {};
                data["label"] = genre.description;
-               list.push( data );
-            } )
-            console.log( list );
+               list.push(data);
+            })
+            console.log(list);
 
-            this.setState( {
+            this.setState({
                genre: list
-            } );
+            });
 
-         } ).catch( error => {
-            console.error( error );
-         } );
+         }).catch(error => {
+            console.error(error);
+         });
 
 
    }
 
 
 
-   fetchApiRequest = async ( url, param ) => {
+   fetchApiRequest = async (url, param) => {
 
       var options = {
          method: 'GET',
@@ -73,27 +73,27 @@ class Home extends Component {
          }
       };
 
-      await axios( url, options )
-         .then( response => {
+      await axios(url, options)
+         .then(response => {
             let data = [];
 
-            for ( let index = 0; index < 5; index++ ) {
-               data.push( response.data[index] );
+            for (let index = 0; index < 5; index++) {
+               data.push(response.data[index]);
             }
 
-            this.setState( {
+            this.setState({
                moviesIdByGenre: data
-            } );
-         } ).catch( error => {
-            console.error( error );
-         } );
+            });
+         }).catch(error => {
+            console.error(error);
+         });
    }
-   handleOnChange = async ( e ) => {
+   handleOnChange = async (e) => {
 
       let searchedGenre = e.label.toLowerCase();
       let params = { genre: '/chart/popular/genre/' + searchedGenre };
-      await this.fetchApiRequest( getMovieByGenre, params );
-      console.log( "moviesbyGenre after setState", this.state.moviesIdByGenre );
+      await this.fetchApiRequest(getMovieByGenre, params);
+      console.log("moviesbyGenre after setState", this.state.moviesIdByGenre);
    }
 
    render() {
@@ -138,8 +138,9 @@ class Home extends Component {
                <Col sm={2} md={2} lg={2} >
                </Col>
                <Col sm={8}  >
-                  <Movies></Movies>
-
+                  <Alert color="success">
+                     <Movies></Movies>
+                  </Alert>
                </Col>
                <Col sm={2} md={2} lg={2} >
                </Col>
@@ -149,9 +150,9 @@ class Home extends Component {
       );
    }
 }
-const mapStateToProps = ( state ) => {
-   console.log( "InMaptoProps in newsource" );
-   console.log( state );
+const mapStateToProps = (state) => {
+   console.log("InMaptoProps in newsource");
+   console.log(state);
    return {
       generalVal: state.generalVal,
       businessVal: state.businessVal,
@@ -161,4 +162,4 @@ const mapStateToProps = ( state ) => {
 
 };
 
-export default connect( mapStateToProps, null )( Home );
+export default connect(mapStateToProps, null)(Home);

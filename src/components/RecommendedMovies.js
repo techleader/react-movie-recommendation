@@ -16,12 +16,13 @@ class RecommendedMovies extends Component {
 
     const { comedy, action, adventure } = this.props;
     console.log(comedy);
+    let noRecommendations = " - No recommendations!!!";
     return (
       <div>
-        Recommended Movies
+        Recommended Movies { (comedy | adventure | action) ? "" : noRecommendations}
         <Row>
-          {
-            movies.map(movie => {
+          {                     
+            movies.map(movie => {              
               if (movie.genre == "comedy" && comedy == true) {
                 return (
                   <Col md={4}>
