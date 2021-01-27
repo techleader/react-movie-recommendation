@@ -19,6 +19,9 @@ class Movies extends Component {
     return (
       <div>
         <Row>
+          Movies
+        </Row>
+        <Row>
           {
             actionMovieData.map(movie => {
               return (   

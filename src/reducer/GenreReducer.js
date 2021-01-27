@@ -2,7 +2,7 @@
 const initialState = {
     comedy: "false",
     action: "false",
-    adventure: "false"
+    adventure: "false"    
 }
 
 

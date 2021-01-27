@@ -20,16 +20,15 @@ class Movie extends Component {
                <CardBody>
                   <CardTitle >{this.props.data.title}</CardTitle>
                   <CardSubtitle tag="h6" className="mb-2 text-muted">{this.props.data.genre}</CardSubtitle>
-                  {/* <CardText>Some quick example 
-                     text to build on
-                     </CardText> */}
                   <Row>
-                     <Col sm={3}>
-                        <GrLike  onClick={() => this.props.recommend( this.props.data.genre, true )}></GrLike></Col>
-                     <Col sm={3}></Col>
-                     <Col sm={3}>
-                        <GrDislike onClick={() => this.props.recommend( this.props.data.genre, false )}></GrDislike></Col>
-                     <Col sm={3}></Col>
+                     
+                     <Col sm={2}>
+                        <GrLike style={{color: 'blue'}} onClick={() => this.props.recommend( this.props.data.genre, true )}></GrLike>
+                     </Col>
+                     <Col sm={2}>
+                        <GrDislike onClick={() => this.props.recommend( this.props.data.genre, false )}></GrDislike>
+                     </Col>
+                     <Col sm={6}></Col>
                   </Row>
 
                </CardBody>
