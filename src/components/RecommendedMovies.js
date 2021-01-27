@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardSubtitle, CardTitle, CardText, CardBody, Row, Col, Button } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 import { connect } from "react-redux";
 import movies from '../movieData/movies.json';
 import Movie from './Movie';
@@ -14,37 +14,43 @@ class RecommendedMovies extends Component {
 
   render() {
 
-    const { comedy, action, adventure } = this.props;
+    const { comedy, action, adventure,war } = this.props;
     console.log(comedy);
     let noRecommendations = " - No recommendations!!!";
     return (
-      <div>
-        Recommended Movies { (comedy | adventure | action) ? "" : noRecommendations}
+      <div style={{ color: "white" }}>
+        Recommended Movies { (comedy | adventure | action | war) ? "" : noRecommendations}
         <Row>
-          {                     
-            movies.map(movie => {              
+          {
+            movies.map(movie => {
               if (movie.genre == "comedy" && comedy == true) {
                 return (
-                  <Col md={4}>
+                  <Col md={3}>
                     <Movie data={movie} ></Movie>
                   </Col>
                 );
 
               } else if (movie.genre == "action" && action == true) {
                 return (
-                  <Col md={4}>
+                  <Col md={3}>
                     <Movie data={movie} ></Movie>
                   </Col>
                 );
 
               } else if (movie.genre == "adventure" && adventure == true) {
                 return (
-                  <Col md={4}>
+                  <Col md={3}>
                     <Movie data={movie} ></Movie>
                   </Col>
                 );
 
-              }else {
+              } else if (movie.genre == "war" && war == true) {
+                return (
+                  <Col md={3}>
+                    <Movie data={movie} ></Movie>
+                  </Col>
+                );
+              } else {
                 return "";
               }
             })
@@ -61,7 +67,8 @@ const mapStateToProps = (state) => {
   return {
     comedy: state.comedy,
     action: state.action,
-    adventure: state.adventure
+    adventure: state.adventure,
+    war: state.war
   };
 
 };

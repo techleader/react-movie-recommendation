@@ -3,24 +3,13 @@ import { Card, CardImg, CardSubtitle, CardTitle, CardText, CardBody, Row, Col, B
 import actionMovieData from '../movieData/movies.json'
 import Movie from './Movie';
 
-
-
 class Movies extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
 
   render() {
 
     return (
-      <div>
-        <Row>
-          Movies
-        </Row>
+      <div style={{ color:"white"}}>
+       <b>Movies</b>
         <Row>
           {
             actionMovieData.map(movie => {

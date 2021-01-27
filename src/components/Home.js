@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Row, Col, Alert } from 'reactstrap';
+import { Row, Col, Alert, Button } from 'reactstrap';
 import Select from 'react-select';
 import axios from 'axios';
 import Movies from "./Movies";
 import RecommendedMovies from "./RecommendedMovies";
+
 
 
 let getAllGeneres = 'https://imdb8.p.rapidapi.com/title/list-popular-genres';
@@ -22,6 +23,7 @@ class Home extends Component {
          genre: [],
          moviesIdByGenre: [],
          searchedMovies: [],
+         listMovies: []
 
       }
    }
@@ -34,7 +36,8 @@ class Home extends Component {
          //params: {genre:'/chart/popular/genre/adventure'},
          headers: {
             'x-rapidapi-key': '4d8034dbfcmsh63312b428cf422ap19e69cjsn9d1bf0ded551',
-            'x-rapidapi-host': 'imdb8.p.rapidapi.com'
+            'x-rapidapi-host': 'imdb8.p.rapidapi.com',
+            "useQueryString": true
          }
       };
 
@@ -59,50 +62,88 @@ class Home extends Component {
 
    }
 
+   getMoviesDataById = async(genre) => {
+      let data=[];
+      for (let index = 0; index < this.state.moviesIdByGenre.length; index++) {
 
+         var id = this.state.moviesIdByGenre[index].split("/")[2];
+        
+         var options = {
+            method: 'GET',
+            url: getMovie,
+            params: { tconst: id },
+            headers: {
+               'x-rapidapi-key': '3544d79287msh6b6016b7da78104p1fffd5jsndab861fdb52a',
+               'x-rapidapi-host': 'imdb8.p.rapidapi.com',
+               "useQueryString": true
+            }
+         };
 
-   fetchApiRequest = async (url, param) => {
+       await axios(options)
+            .then(response => {
+                 let movie= response.data;
+               movie["genre"]=genre;
+               data.push(movie)
+               
+            
+            }).catch(error => {
+               console.error(error);
+            });
+
+      }
+      console.log("data:",JSON.stringify(data));
+
+   }
+
+   getMoviesByGenre = async (genre) => {
 
       var options = {
          method: 'GET',
-         url: url,
-         params: param != null ? param : {},
+         url: getMovieByGenre,
+         params: { genre: '/chart/popular/genre/' + genre },
          headers: {
-            'x-rapidapi-key': '4d8034dbfcmsh63312b428cf422ap19e69cjsn9d1bf0ded551',
+            'x-rapidapi-key': '3544d79287msh6b6016b7da78104p1fffd5jsndab861fdb52a',
             'x-rapidapi-host': 'imdb8.p.rapidapi.com'
          }
       };
 
-      await axios(url, options)
+      await axios(options)
          .then(response => {
             let data = [];
-
-            for (let index = 0; index < 5; index++) {
+            for (let index = 0; index < 6; index++) {
                data.push(response.data[index]);
             }
-
             this.setState({
                moviesIdByGenre: data
             });
+          
          }).catch(error => {
             console.error(error);
          });
    }
-   handleOnChange = async (e) => {
 
-      let searchedGenre = e.label.toLowerCase();
-      let params = { genre: '/chart/popular/genre/' + searchedGenre };
-      await this.fetchApiRequest(getMovieByGenre, params);
-      console.log("moviesbyGenre after setState", this.state.moviesIdByGenre);
-   }
+
+
+
+   // handleOnChange = async (e) => {
+
+   //    let searchedGenre = e.label.toLowerCase();
+   //    let params = { genre: '/chart/popular/genre/' + searchedGenre };
+   //    await this.fetchApiRequest(getMovieByGenre, params);
+   //    console.log("moviesbyGenre after setState", this.state.moviesIdByGenre);
+   // }
 
    render() {
-
+      console.log("render-MovieListByID:",this.state.moviesIdByGenre);
+      console.log("render-moviesData: ",this.state.MovieData);
       return (
          <div>
             <br></br>
             <Row>
                <Col sm={3} md={3} lg={3} >
+                  <Button onClick={() => this.getMoviesByGenre("Sport")}>getMoviesByGenre</Button>
+
+                  <Button onClick={()=>this.getMoviesDataById("Sport")}>getMoviedata</Button>
                </Col>
                <Col sm={3} md={3} lg={3} >
                </Col>
@@ -119,30 +160,29 @@ class Home extends Component {
                   />
 
                </Col>
-
             </Row>
 
             <br></br>
             <Row>
-               <Col sm={2} md={3} lg={2} >
+               <Col sm={2}>
                </Col>
                <Col sm={8}  >
-                  <Alert color="primary">
+                  <div className="background">
                      <RecommendedMovies></RecommendedMovies>
-                  </Alert>
+                  </div>
                </Col>
-               <Col sm={2} md={2} lg={2} >
-               </Col>
+               <Col sm={2}></Col>
             </Row>
+            <br></br>
             <Row>
-               <Col sm={2} md={2} lg={2} >
+               <Col sm={2} >
                </Col>
-               <Col sm={8}  >
-                  <Alert color="success">
+               <Col sm={8} >
+                  <div className="moviebg">
                      <Movies></Movies>
-                  </Alert>
+                  </div>
                </Col>
-               <Col sm={2} md={2} lg={2} >
+               <Col sm={2} >
                </Col>
             </Row>
 

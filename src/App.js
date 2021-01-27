@@ -4,14 +4,14 @@ import Home from "./components/Home";
 import Navigation from "./components/Navigation";
 import './App.css';
 import Settings from './components/Settings';
-import image from "./images/background.jpg"
+import image from "./images/background.jpeg"
 
 
 class App extends Component {
    render() {
       return (
          <BrowserRouter >
-            <div style={{ backgroundImage: `url(${image})`, width: '100%' }}>
+            <div style={{ backgroundImage: `url(${image})`, width: '100%'}}>
             <Navigation></Navigation>
                <Switch>
                   <Route path="/" component={Home} exact></Route>

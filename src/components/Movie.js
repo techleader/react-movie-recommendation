@@ -15,15 +15,17 @@ class Movie extends Component {
       return (
          <div>
             <br></br>
-            <Card>
+            <Card  style={{ backgroundColor: 'white'}}>
                <CardImg top width="100%" height="150" src={this.props.data.image.url} alt="Card image cap" />
                <CardBody>
-                  <CardTitle >{this.props.data.title}</CardTitle>
-                  <CardSubtitle tag="h6" className="mb-2 text-muted">{this.props.data.genre}</CardSubtitle>
+                  <CardTitle style={{ color: 'black'}}>{this.props.data.title}</CardTitle>
+                  <CardSubtitle tag="h6" className="mb-2 text-muted "  >
+                     {this.props.data.genre}
+                     </CardSubtitle>
                   <Row>
                      
                      <Col sm={2}>
-                        <GrLike style={{color: 'blue'}} onClick={() => this.props.recommend( this.props.data.genre, true )}></GrLike>
+                        <GrLike style={{color: 'green'}} onClick={() => this.props.recommend( this.props.data.genre, true )}></GrLike>
                      </Col>
                      <Col sm={2}>
                         <GrDislike onClick={() => this.props.recommend( this.props.data.genre, false )}></GrDislike>

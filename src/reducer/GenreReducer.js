@@ -2,7 +2,8 @@
 const initialState = {
     comedy: "false",
     action: "false",
-    adventure: "false"    
+    adventure: "false",
+    war: "false"
 }
 
 
@@ -18,6 +19,9 @@ const GenreReducer = (state = initialState, action) => {
             break;
         case "adventure":
             state = { ...state, adventure: action.payload };
+            break;
+        case "war":
+            state = { ...state, war: action.payload };
             break;
     }
     return state;
